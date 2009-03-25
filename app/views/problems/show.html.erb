@@ -1,0 +1,29 @@
+<h1>Problem <%= @problem.id.to_s -%></h1>
+<%= link_to "&larr; Back to all problems", problems_path %>
+
+<h2>Board</h2>
+<b>White</b>: <%= @problem.white -%><br />
+<b>Black</b>: <%= @problem.black -%>
+
+<h2>Moves</h2>
+<% if @problem.moves.empty? %>
+	<div id="nomoves">
+		<i>This problem has no moves defined.</i>
+	</div>
+<% end -%>
+
+<ul id="moves">
+	<% @problem.moves.each do |move| %>
+		<% content_tag_for :li, move do %>
+			<span class="handle">[+]</span>
+			<div class="white"><%= move.white_from -%> &raquo; <%= move.white_to -%> (<%= move.white_destroys -%>)</div>
+			<div class="black"><%= move.black_from %> &raquo; <%= move.black_to %> (<%= move.black_destroys -%>)</div>
+			<span class="edit"><%= link_to "edit", edit_problem_move_path(@problem, move) -%></span>
+			<span class="delete"><%= link_to "delete", problem_move_path(@problem, move), :method => :delete -%></span>
+		<% end -%>
+	<% end -%>
+</ul>
+
+<%= sortable_element("moves", :url => sort_problem_moves_path(@problem)) -%>
+
+<%= link_to "Add move", new_problem_move_path(@problem), :accesskey => "a" -%>

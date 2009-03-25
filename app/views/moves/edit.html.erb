@@ -1,0 +1,7 @@
+<h3>Edit move</h3>
+<%= link_to "&larr; Back to problem", problem_path(@problem) %>
+<% form_for @move, :url => problem_move_path(@problem, @move)  do |f| %>
+	<%= render :partial => "form", :locals => {:f => f} %>
+	<br />
+	<%= f.submit "Update move" -%>
+<% end -%>

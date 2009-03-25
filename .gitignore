@@ -1,0 +1,4 @@
+*.log
+schema.rb
+schema.sql
+*.sqlite3

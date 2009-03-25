@@ -1,0 +1,18 @@
+<h1>DAM &raquo; XML</h1>
+
+<h2>Problems</h2>
+<ul id="problems">
+	<% @problems.each do |problem| %>
+		<% content_tag_for :li, problem do %>
+			<span class="handle">[+]</span>
+			<span class="edit"><%= link_to "edit", edit_problem_path(problem) -%></span>
+			<span class="delete"><%= link_to "delete", problem_path(problem), :method => :delete -%></span>
+			<%= link_to "Problem " + problem.id.to_s, problem_path(problem) -%> (<%= problem.moves.size -%> moves)
+		<% end -%>
+	<% end -%>
+</ul>
+<%= sortable_element("problems", :url => sort_problems_path, :handle => "handle") %>
+
+<%= link_to "New Problem", new_problem_path -%><br />
+<hr />
+<%= link_to "Give me my XML", problems_path(:format => :xml)%>

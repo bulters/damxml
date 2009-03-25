@@ -1,0 +1,21 @@
+<h2>New Problem</h2>
+<%= link_to "&larr; Back to all problems", problems_path %>
+
+<% form_for @problem, problems_path do |f| %>
+	<fieldset>
+		<legend>Problem</legend>
+		<%= f.label :number, "Problem Number" %>
+		<%= f.text_field :number, :size => 4 %>
+	</fieldset>
+
+	<fieldset>
+		<legend>Board</legend>
+		<%= f.label :white, "White" %>
+		<%= f.text_field :white %><br />
+		<%= f.label :black, "Black" %>
+		<%= f.text_field :black %><br />
+	</fieldset>
+
+	<%= f.submit "Create Problem" %>
+
+<% end -%>

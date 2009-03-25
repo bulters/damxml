@@ -1,0 +1,10 @@
+<h3>New move</h3>
+<%= link_to "&larr; Back to problem", problem_path(@problem) %>
+<% remote_form_for @move, :url => problem_moves_path(@problem) do |f| %>
+	<fieldset>
+		<legend>New Move</legend>
+		<%= render :partial => "form", :locals => {:f => f} %>
+		<br />
+		<%= f.submit "Add move" -%>
+	</fieldset>
+<% end -%>
